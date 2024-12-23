@@ -112,7 +112,7 @@ class WechatService : AccessibilityService() {
             }
             val build = GestureDescription.Builder()
             val gestureDescription =
-                build.addStroke(GestureDescription.StrokeDescription(path, 500, 100)).build()
+                build.addStroke(GestureDescription.StrokeDescription(path, 350, 100)).build()
 
             dispatchGesture(gestureDescription, object : GestureResultCallback() {
 
