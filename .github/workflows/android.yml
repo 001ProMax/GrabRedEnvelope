@@ -1,0 +1,30 @@
+name: Build APK
+
+on:
+  workflow_dispatch:  # 允许手动触发
+  push:
+    branches:
+      - master
+      - "feature/*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: '11'
+
+      - name: Build with Gradle
+        run: ./gradlew assembleRelease
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: GrabRedEnvelope-apk
+          path: app/build/outputs/apk/release/app-release.apk
